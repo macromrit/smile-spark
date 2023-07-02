@@ -1,0 +1,153 @@
+
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Data - Processed</title>
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" type="text/css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<style>
+
+        h1{
+            font-size:50px;
+            font-weight: 700;
+            color: rgb(64, 64, 64);
+        }
+
+        /*Table Style One*/
+        .table .table-header{
+            background:#FEC107;
+            color:#333;
+            
+        }
+        .table .table-header .cell{
+            padding:20px;
+        }
+
+
+        @media screen and (max-width: 640px){
+            table {
+                overflow-x: auto;
+                display: block;
+            }
+            .table .table-header .cell{
+                padding:10px 5px;
+            }
+        }
+    h1 {
+        padding-top: 30px;
+        padding-bottom: 20px;
+    }
+    h2 {
+        font-weight: 600;
+        font-size: 30px;
+
+    }
+    span{
+        color: rgb(250, 175, 0);
+        margin-left: 30px;
+    }
+    .lefo{
+        margin-left: 0px;
+    }
+    .justforfun{
+        height: 20px;
+    }
+    
+</style>
+
+</head>
+<body>
+<div class="container">
+    <h1>One - Hot - EnCoded Table</h1>
+    {% if ERROR %}
+    
+    <div class="alert alert-danger my-5" role="alert">
+        Something went wrong <a href="#" class="alert-link">either it was an invalid file or smiles column was missing</a>. Check and fix it for sure!!!
+      </div>
+
+    {% else %}
+    <h2>Length of Field Generated :<span> {{ fields|length }} </span></h2>
+    
+    
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <tr class="table-header">
+                    <th class="cell">S.no</th>
+                    <th class="cell">Field Character</th>
+                </tr>
+
+                {% for i in fields %}
+                
+                <tr  class="active">
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ i }}</td>
+                </tr>
+
+                {% endfor %}
+                
+            </table>
+        </div>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <br>
+    <br>
+
+
+
+    <h2>Smiles<span class="lefo"> One-Hot-Encodings</span>Table</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <tr class="table-header">
+                    <th class="cell">S.no</th>
+                    <th class="cell">Smiles Representation</th>
+                    <th class="cell">One-Hot-Code Representation</th>
+                </tr>
+
+                {% for j,k in hot_codes %}
+                
+                <tr  class="active">
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ j }}</td>
+                    <td>{{ k }}</td>
+                </tr>
+
+                {% endfor %}
+                
+            </table>
+        </div>
+    </div>
+    
+    <a href="media/processed_csv_sol/{{download_link}}">
+        <button type="button" class="btn btn-success">Download it</button>
+    </a> 
+    
+    {% endif %}
+    
+    <a href="{% url 'upload' %}"><button type="button" class="btn btn-primary">Go back</button> </a>
+    
+    <div class="justforfun">
+
+
+
+    </div>
+
+</div>
+</body>
+</html>
